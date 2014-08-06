@@ -35,7 +35,7 @@ public class TestJDBC {
 		// stmt.close();
 		// conn.close();
 
-		String sql = "SELECT A,B,C FROM TEST";
+		String sql = "SELECT A,B,C FROM TEST WHERE A=1,2,3";
 		ResultSet rsset = stmt.executeQuery(sql);
 
 		while (rsset.next() != null) {
