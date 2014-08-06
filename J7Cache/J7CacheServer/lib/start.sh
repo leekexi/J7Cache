@@ -1,0 +1,1 @@
+java -jar J7CacheServer.jar
