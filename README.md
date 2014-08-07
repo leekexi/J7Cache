@@ -97,6 +97,7 @@ public class TestJDBC {
 		}
 		stmt.close();
 
+		stmt = conn.createStatement();
 		sql = "SELECT A,B,C FROM TEST";
 		ResultSet rsset = stmt.executeQuery(sql);
 
