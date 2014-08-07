@@ -40,7 +40,7 @@ HDSYNC_DATA_DIR = /usr/datas/j7cache/datas
 ### The second step
 Through the console or JDBC, execute create table "CREATE TABLE XXXX"
 ```
-**Start J7CacheServer
+Start J7CacheServer
 Window X:>J7CacheServer>start.bat
 Linux >/J7CacheServer/start.sh
 ```
@@ -126,4 +126,8 @@ Exit
 Window: X:> bye!
 Linux:> bye!
 ```
-execute SQL statements, SQL statements according to the second point of writing standards
+Execute SQL statements, SQL statements according to the second step of writing standards
+```
+Window: X:> SELECT A,B,C FROM Test
+Linux: > SELECT A,B,C FROM Test
+```
