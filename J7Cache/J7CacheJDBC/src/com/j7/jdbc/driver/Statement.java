@@ -12,10 +12,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class Statement {
+@SuppressWarnings({ "rawtypes", "serial" })
+public class Statement extends HashMap {
 
 	Connection conn = null;
 	Socket socket = null;
@@ -64,13 +64,13 @@ public class Statement {
 		return rs;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	public ResultSet executeQuery(String sql) {
 
 		ResultSet rs = null;
 		if (conn != null) {
 			try {
-				long startTime = System.currentTimeMillis(); // 获取开始时间
+				long startTime = System.currentTimeMillis();
 				out.println(sql);
 				String drs = "";
 				String kdrs = in.readLine();
@@ -83,24 +83,27 @@ public class Statement {
 
 				drs += kdrs.substring(0, ke);
 				drs = drs.replaceAll("\\\\u", "\\u");
-				long endTime = System.currentTimeMillis(); // 获取结束时间
-				System.out.println(sql + "\r\n客户端接收到数据的时间： " + (endTime - startTime) + "ms");
+				long endTime = System.currentTimeMillis();
+				System.out.println(sql + "\r\nThe client receives the data of the time： " + (endTime - startTime)
+						+ "ms");
 				if (drs.indexOf("{") == 0) {
 					rs = new ResultSet();
 
 					JSONObject jsonObject = JSONObject.fromObject(drs);
+
 					Iterator it = jsonObject.keys();
 					while (it.hasNext()) {
 						String key = (String) it.next();
-						JSONArray array = jsonObject.getJSONArray(key);
-						for (int i = 0; i < array.size(); i++) {
-							JSONObject row = array.getJSONObject(i);
-							Iterator rowit = row.keys();
+						JSONObject jsonObject2 = (JSONObject) jsonObject.get(key);
+						Iterator it2 = jsonObject2.keys();
+						while (it2.hasNext()) {
+							String key2 = (String) it2.next();
+							JSONObject jsonObject3 = (JSONObject) jsonObject2.get(key2);
+							Iterator it3 = jsonObject3.keys();
 							Map map = new HashMap();
-							while (rowit.hasNext()) {
-								String field_name = (String) rowit.next();
-								String field_value = row.getString(field_name);
-								map.put(field_name, field_value);
+							while (it3.hasNext()) {
+								String key3 = (String) it3.next();
+								map.put(key3, jsonObject3.get(key3));
 							}
 							rs.addRow(map);
 						}
@@ -114,4 +117,5 @@ public class Statement {
 		}
 		return rs;
 	}
+
 }

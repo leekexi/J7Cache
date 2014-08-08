@@ -26,18 +26,18 @@ public class ResultSet extends HashMap {
 
 	public int getInt(String field) {
 		Map m = (Map) this.get(rowid);
-		return Integer.parseInt(m.get(field)+"");
+		return Integer.parseInt(m.get(field) + "");
 	}
 
 	public double getDouble(String field) {
 		Map m = (Map) this.get(rowid);
-		return Double.parseDouble(m.get(field)+"");
+		return Double.parseDouble(m.get(field) + "");
 
 	}
 
 	public float getFloat(String field) {
 		Map m = (Map) this.get(rowid);
-		return Float.parseFloat(m.get(field)+"");
+		return Float.parseFloat(m.get(field) + "");
 	}
 
 	public Map next() {
