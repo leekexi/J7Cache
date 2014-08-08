@@ -7,8 +7,8 @@ J7Cache is a high-performance in-memory database, support classes SQL, support f
 
 ##How to use
 
-### First Step
-Understanding the configuration file "server.properties"
+### Understanding the configuration file "server.properties"
+
 ```
 #DataBase IP
 IP=127.0.0.1
@@ -37,29 +37,28 @@ HDSYNC_TIME = 30
 HDSYNC_DATA_DIR = /usr/datas/j7cache/datas
 ```
 
-### The second step
-Through the console or JDBC, execute create table "CREATE TABLE XXXX"
+### Start J7CacheServer
 ```
-Start J7CacheServer
 Window X:>J7CacheServer>start.bat
 Linux >/J7CacheServer/start.sh
 ```
 
-Through the console or JDBC, execute create table "CREATE TABLE XXXX"
-
+### Supported SQL example
+Through the console or JDBC, execute SQL.
 Supported SQL example, pay attention to keywords in uppercase,
 WHERE conditions currently supports only one condition, and must
 be the primary key, you can simultaneously query multiple values.
 
 ```
-String SQL_INSERT_INTO = "INSERT INTO Test(A,B,C) VALUES(1,ddssss,aaaa)";
-String SQL_SELECT = "SELECT A,B,C FROM Test";
-String SQL_UPDATE = "UPDATE Test SET B=111,C=eee WHERE A=1,2,3";
-String SQL_DELETE = "DELETE FROM Test WHERE A=1";
-String SQL_DROP_TABLE = "DROP TABLE Test";
+CREATE TABLE Test
+INSERT INTO Test(A,B,C) VALUES(1,ddssss,aaaa)";
+SELECT A,B,C FROM Test";
+UPDATE Test SET B=111,C=eee WHERE A=1,2,3";
+DELETE FROM Test WHERE A=1";
+DROP TABLE Test";
 ```
 
-JDBC example
+### JDBC example
 ```
 package com.j7.test;
 
@@ -121,14 +120,15 @@ public class TestJDBC {
 }
 ```
 
-##Console instruction
-Exit
+## Execute commands in the console
+### Exit J7CacheServer
 ```
 Window: X:> bye!
 Linux:> bye!
 ```
-Execute SQL statements, SQL statements according to the second step of writing standards
+### Execute SQL statements, SQL statements according to the second step of writing standards
+For example
 ```
 Window: X:> SELECT A,B,C FROM Test
-Linux: > SELECT A,B,C FROM Test
+Linux: /> SELECT A,B,C FROM Test
 ```
